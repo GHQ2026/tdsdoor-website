@@ -8,7 +8,12 @@
 from pathlib import Path
 import json
 
-BASE = Path("D:/2026AI/Wookbuddy/workspace/projects/project_002_公司官方网站/site")
+# 站点根目录：由本脚本位置推导（src/build.py -> 项目根/site），
+# Windows 本机与 Linux CI 构建机都能正确定位，不依赖任何写死的绝对路径。
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+BASE = PROJECT_ROOT / "site"
+BASE.mkdir(parents=True, exist_ok=True)
+(PROJECT_ROOT / "content").mkdir(parents=True, exist_ok=True)
 
 # 站点正式域名（上线后全局替换为备案域名，例如 https://www.tuodasheng.com）
 # robots / sitemap / canonical / Open Graph / JSON-LD 全部引用此常量，改一处即全站生效
