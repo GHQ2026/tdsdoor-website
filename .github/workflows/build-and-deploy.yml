@@ -37,13 +37,17 @@ jobs:
       - name: 质量门禁检查
         run: python src/tools/gate_check.py
 
-      - name: 打包站点
-        uses: actions/configure-pages@v5
-
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
+      - name: 备份站点压缩包（可随时下载）
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: site
+          retention-days: 90
 
   deploy:
     needs: build
@@ -55,3 +59,5 @@ jobs:
       - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        # 仓库未开启 Pages 时该步骤会失败，但不影响构建校验，故设为容错
+        continue-on-error: true
