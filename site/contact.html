@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>联系我们 - 安徽拓达昇门业科技有限公司</title>
+<meta name="description" content="安徽拓达昇门业科技有限公司联系方式：电话 136 7551 2533，邮箱 82257018@qq.com，地址 安徽省合肥市蜀山区经济开发区湖光路1299号。提供工业门选型咨询、方案设计与售后维保服务。">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="canonical" href="https://www.tdsdoor.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="联系我们 - 安徽拓达昇门业科技有限公司">
+<meta property="og:description" content="安徽拓达昇门业科技有限公司联系方式：电话 136 7551 2533，邮箱 82257018@qq.com，地址 安徽省合肥市蜀山区经济开发区湖光路1299号。提供工业门选型咨询、方案设计与售后维保服务。">
+<meta property="og:url" content="https://www.tdsdoor.com/contact.html">
+<meta property="og:image" content="https://www.tdsdoor.com/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"安徽拓达昇门业科技有限公司","url":"https://www.tdsdoor.com/","logo":"https://www.tdsdoor.com/assets/images/logo.png","email":"82257018@qq.com","telephone":"+8613675512533","address":{"@type":"PostalAddress","streetAddress":"经济开发区湖光路1299号","addressLocality":"合肥市","addressRegion":"安徽省","addressCountry":"CN"}}
+</script>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container inner">
+    <a href="index.html" class="logo"><img src="assets/images/logo-header.png" alt="拓达昇 TODOSUN"></a>
+    <button class="menu-toggle" aria-label="菜单" aria-expanded="false"><svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M4 6h16M4 18h16"/></svg></button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="">首页</a></li>
+      <li><a href="about.html" class="">关于我们</a></li>
+      <li><a href="products/index.html" class="">产品中心</a></li>
+      <li><a href="cases/index.html" class="">案例与方案</a></li>
+      <li><a href="news/index.html" class="">新闻动态</a></li>
+      <li><a href="contact.html" class="active">联系我们</a></li>
+    </ul>
+  </div>
+</header>
+<main>
+<section class="section" style="background:var(--bg);">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-card">
+        <h2 class="section-title" style="text-align:left;margin-bottom:var(--space-6);">在线咨询</h2>
+        <!-- Web3Forms 模式：access_key 替换后正式生效，邮件投递至 82257018@qq.com -->
+        <form id="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="拓达昇门业官网 - 新咨询">
+          <input type="hidden" name="from_name" value="拓达昇门业官网">
+          <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <label for="f-name">姓名 <span class="req">*</span></label>
+            <input class="input" id="f-name" name="name" type="text" placeholder="请输入您的称呼" required maxlength="40">
+          </div>
+          <div class="form-row">
+            <label for="f-company">公司</label>
+            <input class="input" id="f-company" name="company" type="text" placeholder="请输入公司名称（选填）" maxlength="60">
+          </div>
+          <div class="form-row">
+            <label for="f-phone">电话 <span class="req">*</span></label>
+            <input class="input" id="f-phone" name="phone" type="tel" placeholder="如 136 7551 2533" required pattern="[0-9+ -]{6,20}">
+          </div>
+          <div class="form-row">
+            <label for="f-need">需求描述</label>
+            <textarea class="textarea" id="f-need" name="message" placeholder="请描述您的门型需求、数量、使用场景等" required maxlength="1000" rows="4"></textarea>
+          </div>
+          <button type="submit" id="cf-submit" class="btn btn-primary btn-block"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg> 提交咨询</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <style>
+          .hidden-botcheck{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+          .form-status{margin-top:12px;font-size:14px;}
+          .form-status.ok{color:#0B4F8C;}
+          .form-status.err{color:#C0392B;}
+        </style>
+        <script>
+        (function(){
+          var form=document.getElementById('contact-form');
+          var status=document.getElementById('form-status');
+          var btn=document.getElementById('cf-submit');
+          if(!form)return;
+          form.addEventListener('submit',function(e){
+            e.preventDefault();
+            status.textContent='';status.className='form-status';
+            if(!form.elements['name'].value.trim()||!form.elements['phone'].value.trim()||!form.elements['message'].value.trim()){
+              status.textContent='请填写姓名、电话与需求后再提交。';status.className='form-status err';return;
+            }
+            var data=new FormData(form);
+            btn.disabled=true;btn.textContent='提交中…';
+            var ctrl=new AbortController();
+            var timer=setTimeout(function(){ctrl.abort();},8000);
+            fetch('https://api.web3forms.com/submit',{method:'POST',body:data,headers:{'Accept':'application/json'},signal:ctrl.signal})
+              .then(function(r){return r.json();})
+              .then(function(j){clearTimeout(timer);if(j.success){status.textContent='提交成功，我们会尽快与您联系。';status.className='form-status ok';form.reset();}else{throw new Error(j.message||'投递失败');}})
+              .catch(function(){clearTimeout(timer);status.innerHTML='提交失败，请直接拨打 136 7551 2533 或发邮件至 82257018@qq.com。';status.className='form-status err';})
+              .finally(function(){btn.disabled=false;btn.textContent='提交咨询';});
+          });
+        })();
+        </script>
+      </div>
+
+      <div class="contact-right">
+        <aside class="info-card">
+          <h3>联系方式</h3>
+          <div class="info-item">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <div class="label">电话（可直拨）</div>
+              <a class="value" href="tel:13675512533">136 7551 2533</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <div>
+              <div class="label">邮箱</div>
+              <a class="value" href="mailto:82257018@qq.com">82257018@qq.com</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <div class="label">地址</div>
+              <div class="value">安徽省合肥市蜀山区经济开发区湖光路1299号</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div>
+              <div class="label">服务时间</div>
+              <div class="value">周一至周六 8:30–18:00</div>
+            </div>
+          </div>
+        </aside>
+        <div class="map-mini">
+          <div id="map" role="img" aria-label="公司位置地图：安徽省合肥市蜀山区经济开发区湖光路1299号" style="width:100%;height:260px;border-radius:var(--radius-md);background:var(--canvas);"></div>
+          <script src="assets/vendor/leaflet/leaflet.js"></script>
+          <script>
+          (function(){
+            if (typeof L === 'undefined') return;
+            var map = L.map('map', {zoomControl:true}).setView([31.864, 117.153], 16);
+            L.tileLayer('https://wprd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}', {
+              subdomains:'1234', attribution:'© 高德地图', maxZoom:18
+            }).addTo(map);
+            L.marker([31.864, 117.153]).addTo(map)
+              .bindPopup('<b>拓达昇门业</b><br>安徽省合肥市蜀山区经济开发区湖光路1299号')
+              .openPopup();
+            setTimeout(function(){ map.invalidateSize(); }, 250);
+          })();
+          </script>
+          <div class="map-actions">
+            <a href="https://apis.map.qq.com/uri/v1/marker?marker=coord:31.864,117.153;title:拓达昇门业;addr:安徽省合肥市蜀山区经济开发区湖光路1299号&referer=todosun_web" target="_blank" rel="noopener" class="btn btn-outline"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg> 在地图中查看</a>
+            <a href="tel:13675512533" class="btn btn-primary"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 电话咨询</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container">
+    <h2>立即咨询产品方案</h2>
+    <p>专业工程师一对一服务，为您量身定制最优工业门解决方案</p>
+    <div class="phone">136 7551 2533</div>
+    <div class="actions">
+      <a href="tel:13675512533" class="btn btn-accent"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 拨打电话</a>
+      <a href="mailto:82257018@qq.com" class="btn btn-outline"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> 发送邮件</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <!-- 品牌宗旨条带 -->
+    <div class="footer-motto">
+      <span class="motto-item">质量为先</span>
+      <span class="motto-sep"></span>
+      <span class="motto-item">信誉为重</span>
+      <span class="motto-sep"></span>
+      <span class="motto-item">服务为诚</span>
+    </div>
+    <div class="grid">
+      <div class="brand">
+        <div class="logo"><img src="assets/images/logo-footer.png" alt="拓达昇"></div>
+        <p>拓达昇·智能工业门专家</p>
+        <p>集研发、制造、安装、维保于一体的智能工业门整体解决方案服务商。</p>
+        <div class="footer-qrcode"><img src="assets/images/wechat-qrcode-white.png" alt="微信扫码"></div>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="products/index.html">产品中心</a></li>
+          <li><a href="cases/index.html">案例与方案</a></li>
+          <li><a href="news/index.html">新闻动态</a></li>
+          <li><a href="contact.html">联系我们</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> &nbsp;电话：<a href="tel:13675512533">136 7551 2533</a></li>
+          <li><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> &nbsp;邮箱：<a href="mailto:82257018@qq.com">82257018@qq.com</a></li>
+          <li><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> &nbsp;地址：安徽省合肥市蜀山区经济开发区湖光路1299号</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      © 2021–2026 安徽拓达昇门业科技有限公司 版权所有 | <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">皖ICP备XXXXXXXX号</a>（备案号占位，待补充）
+    </div>
+  </div>
+</footer>
+<script>
+const btn=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav-links');
+if(btn&&nav)btn.addEventListener('click',()=>{
+  const open=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

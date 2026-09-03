@@ -1,0 +1,134 @@
+{
+  "$description": "拓达昇 TODOSUN 官网 Design Tokens v1.0（Phase 1 方向冻结）— 契约源: docs/UIUX.md",
+  "$date": "2026-08-28",
+  "color": {
+    "neutral": {
+      "0": { "value": "#FFFFFF", "type": "color", "comment": "卡片表面/导航条/输入框" },
+      "50": { "value": "#FAFAFA", "type": "color", "comment": "表格斑马纹/CMS画布" },
+      "100": { "value": "#F7F7F7", "type": "color", "comment": "页面画布 --bg" },
+      "200": { "value": "#EDEEF0", "type": "color" },
+      "300": { "value": "#E1E4E8", "type": "color", "comment": "边框 --border" },
+      "400": { "value": "#C6CBD2", "type": "color" },
+      "500": { "value": "#98A1AB", "type": "color" },
+      "600": { "value": "#5F6B7A", "type": "color", "comment": "副文本 --muted, 5.0:1 AA" },
+      "700": { "value": "#3A4552", "type": "color" },
+      "800": { "value": "#242E3B", "type": "color" },
+      "900": { "value": "#14202E", "type": "color", "comment": "主文本 --fg, 15.2:1 AAA" }
+    },
+    "blue": {
+      "50": { "value": "#EEF4FA", "type": "color" },
+      "100": { "value": "#D9E7F3", "type": "color" },
+      "200": { "value": "#B4D0E7", "type": "color" },
+      "300": { "value": "#82B0D3", "type": "color" },
+      "400": { "value": "#4F8BB8", "type": "color" },
+      "500": { "value": "#2A6DA3", "type": "color", "comment": "文本链接, 5.2:1 AA" },
+      "600": { "value": "#0B4F8C", "type": "color", "comment": "品牌主色 --accent, on #F7F7F7 7.8:1 / 白字 8.4:1" },
+      "700": { "value": "#0A4274", "type": "color", "comment": "hover" },
+      "800": { "value": "#09375F", "type": "color", "comment": "active" },
+      "900": { "value": "#082C4A", "type": "color", "comment": "页脚背景" }
+    },
+    "orange": {
+      "50": { "value": "#FDF3E7", "type": "color" },
+      "100": { "value": "#FAE3C8", "type": "color" },
+      "200": { "value": "#F4C88E", "type": "color" },
+      "300": { "value": "#EFB05C", "type": "color" },
+      "400": { "value": "#E8922A", "type": "color", "comment": "点睛色：每屏≤2处，禁作正文文本(2.4:1)，橙底文字须用 neutral-900" },
+      "600": { "value": "#B36A10", "type": "color" },
+      "700": { "value": "#A85E0D", "type": "color", "comment": "橙色文本专用, 4.6:1 AA" }
+    },
+    "semantic": {
+      "success": { "value": "#1E7F4F", "type": "color", "comment": "4.9:1 AA" },
+      "warn": { "value": "#B45309", "type": "color", "comment": "4.8:1 AA" },
+      "danger": { "value": "#C13333", "type": "color", "comment": "5.3:1 AA" },
+      "info": { "value": "#0B4F8C", "type": "color" }
+    }
+  },
+  "font": {
+    "family": {
+      "display": { "value": "Inter, Noto Sans SC, -apple-system, PingFang SC, Microsoft YaHei, sans-serif", "type": "fontFamily" },
+      "body": { "value": "Inter, Noto Sans SC, -apple-system, PingFang SC, Microsoft YaHei, sans-serif", "type": "fontFamily" },
+      "mono": { "value": "JetBrains Mono, SFMono-Regular, Consolas, monospace", "type": "fontFamily", "comment": "型号/参数/尺寸数据，tabular-nums" }
+    },
+    "size": {
+      "xs": { "value": "12px", "type": "dimension" },
+      "sm": { "value": "14px", "type": "dimension", "comment": "CMS 正文默认" },
+      "base": { "value": "16px", "type": "dimension", "comment": "官网正文默认" },
+      "lg": { "value": "18px", "type": "dimension" },
+      "xl": { "value": "20px", "type": "dimension" },
+      "2xl": { "value": "24px", "type": "dimension" },
+      "3xl": { "value": "32px", "type": "dimension" },
+      "4xl": { "value": "40px", "type": "dimension" },
+      "5xl": { "value": "48px", "type": "dimension", "comment": "Hero 主标题" }
+    },
+    "weight": {
+      "regular": { "value": "400", "type": "fontWeight" },
+      "medium": { "value": "500", "type": "fontWeight" },
+      "semibold": { "value": "600", "type": "fontWeight", "comment": "上限，禁用 700+ 制造广告感" }
+    },
+    "lineHeight": {
+      "body": { "value": "1.7", "type": "number" },
+      "heading": { "value": "1.2", "type": "number" },
+      "tight": { "value": "1.1", "type": "number" }
+    },
+    "letterSpacing": {
+      "display": { "value": "-0.02em", "type": "dimension", "comment": "≥32px 标题" },
+      "heading": { "value": "-0.01em", "type": "dimension" },
+      "caps": { "value": "0.08em", "type": "dimension", "comment": "ALL CAPS 专用" }
+    }
+  },
+  "space": {
+    "1": { "value": "4px", "type": "dimension" },
+    "2": { "value": "8px", "type": "dimension" },
+    "3": { "value": "12px", "type": "dimension" },
+    "4": { "value": "16px", "type": "dimension" },
+    "5": { "value": "20px", "type": "dimension" },
+    "6": { "value": "24px", "type": "dimension", "comment": "卡片内边距/栅格 gutter" },
+    "8": { "value": "32px", "type": "dimension" },
+    "10": { "value": "40px", "type": "dimension" },
+    "12": { "value": "48px", "type": "dimension", "comment": "数据带项目间距" },
+    "16": { "value": "64px", "type": "dimension" },
+    "20": { "value": "80px", "type": "dimension", "comment": "桌面节区间距" },
+    "30": { "value": "120px", "type": "dimension", "comment": "仅 Hero 纵深" }
+  },
+  "radius": {
+    "sm": { "value": "4px", "type": "dimension", "comment": "Badge/Tag" },
+    "md": { "value": "8px", "type": "dimension", "comment": "按钮/输入框/图片默认" },
+    "lg": { "value": "12px", "type": "dimension", "comment": "Hero 大图上限，全站禁 >16px" },
+    "full": { "value": "9999px", "type": "dimension" }
+  },
+  "shadow": {
+    "sm": { "value": "0 1px 3px rgba(20,32,46,0.06)", "type": "boxShadow" },
+    "md": { "value": "0 4px 12px rgba(20,32,46,0.08)", "type": "boxShadow", "comment": "悬浮/弹层专用" },
+    "lg": { "value": "0 12px 28px rgba(20,32,46,0.12)", "type": "boxShadow", "comment": "模态框" }
+  },
+  "motion": {
+    "fast": { "value": "150ms", "type": "duration", "comment": "hover 收敛值" },
+    "base": { "value": "200ms", "type": "duration" },
+    "slow": { "value": "300ms", "type": "duration", "comment": "内容进入，全站上限 400ms" },
+    "ease": { "value": "cubic-bezier(0.2, 0, 0, 1)", "type": "cubicBezier" }
+  },
+  "layout": {
+    "containerMax": { "value": "1200px", "type": "dimension" },
+    "containerReading": { "value": "680px", "type": "dimension", "comment": "详情正文栏（中文舒适行宽）" },
+    "gutterDesktop": { "value": "24px", "type": "dimension" },
+    "gutterTablet": { "value": "16px", "type": "dimension" },
+    "gutterPhone": { "value": "12px", "type": "dimension" },
+    "sectionYDesktop": { "value": "80px", "type": "dimension" },
+    "sectionYTablet": { "value": "48px", "type": "dimension" },
+    "sectionYPhone": { "value": "32px", "type": "dimension" },
+    "navHeight": { "value": "72px", "type": "dimension" },
+    "gridColumns": { "value": "12/8/4", "type": "string", "comment": "桌面/平板/手机" }
+  },
+  "image": {
+    "ratioHero": { "value": "21:9", "type": "string", "comment": "桌面 Hero；移动 4:3" },
+    "ratioProductCard": { "value": "3:2", "type": "string", "comment": "与既有 1536x1024 素材原生一致" },
+    "ratioCase": { "value": "16:9", "type": "string" },
+    "hoverBehavior": { "value": "border-color transition only, no zoom", "type": "string", "comment": "产品不动界面动" }
+  },
+  "icon": {
+    "library": { "value": "lucide", "type": "string", "comment": "全项目唯一图标库，stroke-width 2" },
+    "sizeInline": { "value": "16px", "type": "dimension" },
+    "sizeButton": { "value": "20px", "type": "dimension" },
+    "sizeStandalone": { "value": "24px", "type": "dimension" }
+  }
+}

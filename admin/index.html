@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拓达昇官网 · 内容后台</title>
+<style>
+  :root{
+    --blue:#0B4F8C; --blue-d:#083d6e; --orange:#E8922A;
+    --bg:#F4F6F8; --card:#fff; --border:#E3E8EE;
+    --fg:#1B2733; --muted:#5B6B7C; --meta:#8494A5;
+    --ok:#1F9254; --err:#C0392B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font:14px/1.6 "Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+       background:var(--bg);color:var(--fg);display:flex;min-height:100vh}
+  /* 侧栏 */
+  aside{width:210px;background:#16222F;color:#c7d3df;flex:0 0 210px;
+        display:flex;flex-direction:column;position:fixed;height:100vh;overflow-y:auto}
+  .brand{padding:20px 18px;font-size:15px;font-weight:700;color:#fff;
+         border-bottom:1px solid rgba(255,255,255,.08);letter-spacing:.5px}
+  .brand small{display:block;font-weight:400;font-size:11px;color:#7d8fa0;margin-top:3px}
+  nav{padding:10px 0;flex:1}
+  nav a{display:block;padding:9px 18px;color:#c7d3df;text-decoration:none;
+        font-size:13px;border-left:3px solid transparent;cursor:pointer}
+  nav a:hover{background:rgba(255,255,255,.05);color:#fff}
+  nav a.on{background:rgba(11,79,140,.35);color:#fff;border-left-color:var(--orange)}
+  /* 主区 */
+  main{flex:1;margin-left:210px;padding:0 0 90px}
+  .topbar{background:var(--card);border-bottom:1px solid var(--border);
+          padding:16px 28px;position:sticky;top:0;z-index:10;
+          display:flex;align-items:center;justify-content:space-between}
+  .topbar h1{font-size:17px;font-weight:700}
+  .topbar .hint{font-size:12px;color:var(--meta);margin-top:2px}
+  .btn{background:var(--blue);color:#fff;border:0;padding:9px 20px;border-radius:5px;
+       font-size:13px;cursor:pointer;font-family:inherit}
+  .btn:hover{background:var(--blue-d)}
+  .btn.ghost{background:#fff;color:var(--blue);border:1px solid var(--border)}
+  .btn:disabled{background:#9aa8b6;cursor:not-allowed}
+  .wrap{padding:22px 28px;max-width:980px}
+  /* 卡片 */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:7px;
+        padding:18px 20px;margin-bottom:16px}
+  .card h2{font-size:14px;font-weight:700;margin-bottom:14px;
+           padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .card h3{font-size:13px;font-weight:700;margin:14px 0 8px;color:var(--blue)}
+  /* 表单 */
+  .row{margin-bottom:14px}
+  .row:last-child{margin-bottom:0}
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:600}
+  label .tip{font-weight:400;color:var(--meta);font-size:11px;margin-left:4px}
+  input,textarea{width:100%;padding:8px 11px;border:1px solid var(--border);
+    border-radius:5px;font:13px/1.6 inherit;color:var(--fg);background:#fff;font-family:inherit}
+  input:focus,textarea:focus{outline:0;border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(11,79,140,.08)}
+  textarea{resize:vertical;min-height:64px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  /* 可增删列表 */
+  .item{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+  .item>*{flex:1}
+  .del{background:none;border:1px solid var(--border);color:var(--meta);
+       width:30px;height:32px;flex:0 0 30px;border-radius:5px;cursor:pointer;
+       font-size:16px;line-height:1;flex-shrink:0}
+  .del:hover{border-color:var(--err);color:var(--err);background:#fdf3f2}
+  .add{margin-top:6px;font-size:12px;color:var(--blue);background:none;border:0;
+       cursor:pointer;padding:4px 0;font-family:inherit}
+  .add:hover{text-decoration:underline}
+  /* 图片上传 */
+  .imgrow{display:flex;gap:8px;align-items:center}
+  .imgrow input{flex:1}
+  .up{background:#fff;color:var(--blue);border:1px solid var(--border);
+      padding:8px 14px;border-radius:5px;font-size:12px;cursor:pointer;
+      white-space:nowrap;flex:0 0 auto;font-family:inherit}
+  .up:hover{border-color:var(--blue);background:#F0F6FB}
+  .up:disabled{color:var(--meta);cursor:wait}
+  .thumb{margin-top:8px;padding:8px;background:#F7F9FB;border:1px solid var(--border);
+         border-radius:5px;min-height:56px;display:flex;align-items:center;gap:12px}
+  .thumb img{max-height:90px;max-width:220px;object-fit:contain;background:#fff;
+             border:1px solid var(--border);border-radius:4px;padding:3px}
+  .thumb .ph{font-size:12px;color:var(--meta)}
+  .thumb .nm{font-size:11px;color:var(--meta);word-break:break-all}
+  /* 站点图片卡 */
+  .asset{display:flex;gap:16px;align-items:center;padding:14px 0;
+         border-bottom:1px solid var(--border)}
+  .asset:last-child{border-bottom:0}
+  .asset .info{flex:1;min-width:0}
+  .asset .info b{display:block;font-size:13px;margin-bottom:3px}
+  .asset .info span{font-size:11px;color:var(--meta);word-break:break-all}
+  .asset .thumb{margin:0;padding:0;border:0;background:none;flex:0 0 auto}
+  /* 产品折叠 */
+  details{border:1px solid var(--border);border-radius:6px;margin-bottom:12px;background:#fff}
+  details>summary{padding:12px 16px;cursor:pointer;font-weight:700;font-size:13px;
+    list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details>summary::-webkit-details-marker{display:none}
+  details>summary::after{content:"+";color:var(--meta);font-weight:400;font-size:16px}
+  details[open]>summary::after{content:"–"}
+  details[open]>summary{border-bottom:1px solid var(--border)}
+  .dbody{padding:16px}
+  /* 状态条 */
+  .status{position:fixed;bottom:0;left:210px;right:0;background:var(--card);
+    border-top:1px solid var(--border);padding:12px 28px;display:flex;
+    align-items:center;justify-content:space-between;z-index:20}
+  .msg{font-size:13px;color:var(--muted)}
+  .msg.ok{color:var(--ok);font-weight:600}
+  .msg.err{color:var(--err);font-weight:600}
+  .empty{color:var(--meta);font-size:13px;padding:20px;text-align:center}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand">拓达昇官网<small>内容管理后台</small></div>
+  <nav id="nav"></nav>
+</aside>
+
+<main>
+  <div class="topbar">
+    <div>
+      <h1 id="title">公司信息</h1>
+      <div class="hint">改完点右下角「保存并重新生成」，然后刷新网站页面即可看到效果</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn ghost" id="previewBtn">打开网站预览</button>
+      <button class="btn" id="saveBtn">保存并重新生成</button>
+    </div>
+  </div>
+  <div class="wrap" id="form"><div class="empty">加载中…</div></div>
+</main>
+
+<div class="status">
+  <span class="msg" id="status">就绪</span>
+  <span style="font-size:12px;color:var(--meta)">数据文件：content/content.json（每次保存自动备份）</span>
+</div>
+
+<script>
+let content = {};
+let cur = 'site';
+
+const SECTIONS = [
+  ['site','公司信息'],['hero','首页主视觉'],['stats','首页卖点'],
+  ['products','产品详情'],['categories','产品类目'],['cases','案例与方案'],
+  ['news','新闻动态'],['about','关于我们'],['clients','客户LOGO'],['assets','站点图片']
+];
+
+/* ---------- 路径读写 ---------- */
+function getByPath(o,p){
+  return p.split('.').reduce((a,k)=> a==null?a : (Array.isArray(a)?a[+k]:a[k]), o);
+}
+function setByPath(o,p,v){
+  const ks=p.split('.'); let c=o;
+  for(let i=0;i<ks.length-1;i++){ c = Array.isArray(c)?c[+ks[i]]:c[ks[i]]; }
+  c[ks[ks.length-1]]=v;
+}
+
+/* ---------- 小工具 ---------- */
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function field(path,label,val,multi,tip){
+  const v = esc(val==null?'':val);
+  return `<div class="row"><label>${label}${tip?`<span class="tip">${tip}</span>`:''}</label>`+
+    (multi? `<textarea data-p="${path}">${v}</textarea>`
+          : `<input data-p="${path}" value="${v}">`)+`</div>`;
+}
+/* 图片字段：文件名输入 + 上传按钮 + 缩略图预览 */
+function imageField(path,val,slug,isClient,label){
+  const v = esc(val==null?'':val);
+  const isPh = !v || v.indexOf('ph-')===0 || /\.svg$/i.test(v);
+  const url = (isClient? '/site/assets/images/clients/' : '/site/assets/images/')+encodeURIComponent(v);
+  return `<div class="row"><label>${label||'图片'}<span class="tip">可直接上传替换，或手动改文件名</span></label>
+    <div class="imgrow">
+      <input data-p="${path}" value="${v}" placeholder="图片文件名">
+      <button class="up" data-up="${path}" data-slug="${esc(slug||'')}" data-client="${isClient?1:0}">上传替换</button>
+    </div>
+    <div class="thumb">${
+      isPh ? `<span class="ph">当前是灰色占位图，上传后自动替换</span>`
+           : `<img src="${url}" alt="" onerror="this.style.display='none'"><span class="nm">${v}</span>`
+    }</div></div>`;
+}
+/* 文件转 base64（本地上传，不走 multipart，后端标准库即可解析） */
+function toB64(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(String(r.result).split(',')[1]);
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+}
+/* 字符串数组：可增删 */
+function strList(path,arr,label,multi){
+  arr = arr||[];
+  let h = `<h3>${label}</h3>`;
+  arr.forEach((v,i)=>{
+    h += `<div class="item">`+
+      (multi? `<textarea data-p="${path}.${i}">${esc(v)}</textarea>`
+            : `<input data-p="${path}.${i}" value="${esc(v)}">`)+
+      `<button class="del" data-del="${path}.${i}" title="删除">×</button></div>`;
+  });
+  h += `<button class="add" data-add="${path}" data-tmpl="str">+ 添加一条</button>`;
+  return h;
+}
+/* 对象数组：每项两个字段 */
+function objList(path,arr,k1,l1,k2,l2,label){
+  arr = arr||[];
+  let h = `<h3>${label}</h3>`;
+  arr.forEach((o,i)=>{
+    h += `<div class="item">
+      <input data-p="${path}.${i}.${k1}" value="${esc(o[k1])}" placeholder="${l1}">
+      <input data-p="${path}.${i}.${k2}" value="${esc(o[k2])}" placeholder="${l2}">
+      <button class="del" data-del="${path}.${i}" title="删除">×</button></div>`;
+  });
+  h += `<button class="add" data-add="${path}" data-tmpl="obj" data-k1="${k1}" data-k2="${k2}">+ 添加一条</button>`;
+  return h;
+}
+
+/* ---------- 各分区渲染 ---------- */
+const R = {
+  site(){
+    const s = content.site||{};
+    return `<div class="card"><h2>公司信息</h2>
+      <div class="grid2">
+        ${field('site.COMPANY','公司名称',s.COMPANY)}
+        ${field('site.SLOGAN','品牌标语',s.SLOGAN)}
+      </div>
+      ${field('site.ADDR','公司地址',s.ADDR)}
+      <div class="grid2">
+        ${field('site.PHONE','联系电话',s.PHONE)}
+        ${field('site.EMAIL','邮箱',s.EMAIL)}
+      </div></div>`;
+  },
+  hero(){
+    const s = content.site||{};
+    return `<div class="card"><h2>首页主视觉</h2>
+      ${field('site.HERO_TITLE','主标题',s.HERO_TITLE)}
+      ${field('site.HERO_SUB','副标题',s.HERO_SUB,true,'支持较长文字')}
+      ${field('site.HERO_MOTTO','企业宗旨',s.HERO_MOTTO,false,'显示在副标题下方，加粗醒目')}
+      </div>`;
+  },
+  stats(){
+    let h=`<div class="card"><h2>首页卖点（4 项）</h2>`;
+    (content.stats||[]).forEach((s,i)=>{
+      h+=`<div style="border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:12px">
+        <div class="grid2">
+          ${field(`stats.${i}.num`,'数字',s.num)}
+          ${field(`stats.${i}.suffix`,'后缀',s.suffix,false,'如 + / h / %，可留空')}
+        </div>
+        ${field(`stats.${i}.label`,'标题',s.label)}
+        ${field(`stats.${i}.desc`,'描述',s.desc)}
+      </div>`;
+    });
+    return h+`</div>`;
+  },
+  products(){
+    let h='';
+    (content.products||[]).forEach((p,i)=>{
+      h+=`<details${i===0?' open':''}><summary>${esc(p.name)||'未命名产品'}</summary><div class="dbody">
+        <div class="grid2">
+          ${field(`products.${i}.name`,'产品名称',p.name)}
+          ${field(`products.${i}.en`,'英文名称',p.en)}
+        </div>
+        ${field(`products.${i}.tagline`,'一句话卖点',p.tagline)}
+        ${imageField(`products.${i}.image`,p.image,p.slug,false,'产品图片')}
+        ${strList(`products.${i}.desc`,p.desc,'产品简介（可多段）',true)}
+        ${objList(`products.${i}.features`,p.features,'num','编号 01','title','特点标题','产品特点')}
+        ${objList(`products.${i}.specs`,p.specs,'label','参数名','value','参数值','技术参数')}
+        ${strList(`products.${i}.apps`,p.apps,'适用场景',false)}
+      </div></details>`;
+    });
+    return h||'<div class="empty">暂无产品</div>';
+  },
+  categories(){
+    let h='';
+    (content.categories||[]).forEach((c,i)=>{
+      h+=`<details${i===0?' open':''}><summary>${esc(c.name)||'未命名类目'}</summary><div class="dbody">
+        ${field(`categories.${i}.name`,'类目名称',c.name)}
+        <h3>子类目（${(c.products||[]).length} 款）</h3>`;
+      (c.products||[]).forEach((n,j)=>{
+        const ip=`categories.${i}.products.${j}.image`;
+        h+=`<div class="item">
+          <input data-p="categories.${i}.products.${j}.name" value="${esc(n.name)}" placeholder="子类目名称">
+          <input data-p="${ip}" value="${esc(n.image)}" placeholder="图片文件名">
+          <button class="up" data-up="${ip}" data-slug="${esc(n.slug||'')}" data-client="0">上传</button>
+          <button class="del" data-del="categories.${i}.products.${j}" title="删除">×</button></div>`;
+      });
+      h+=`<button class="add" data-add="categories.${i}.products" data-tmpl="prod">+ 添加子类目</button>
+      </div></details>`;
+    });
+    return h||'<div class="empty">暂无类目</div>';
+  },
+  cases(){
+    let h=`<div class="card"><h2>案例与方案</h2>`;
+    (content.cases||[]).forEach((c,i)=>{
+      h+=`<div style="border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:12px">
+        ${field(`cases.${i}.title`,'案例标题',c.title)}
+        ${field(`cases.${i}.industry`,'所属行业',c.industry)}
+        ${field(`cases.${i}.desc`,'方案描述',c.desc,true)}
+        <button class="add" data-del="cases.${i}" style="color:var(--err)">删除本条案例</button>
+      </div>`;
+    });
+    h+=`<button class="add" data-add="cases" data-tmpl="case">+ 添加案例</button></div>`;
+    return h;
+  },
+  news(){
+    let h=`<div class="card"><h2>新闻动态</h2>`;
+    (content.news||[]).forEach((n,i)=>{
+      h+=`<div style="border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:12px">
+        ${field(`news.${i}.date`,'日期',n.date,false,'格式 2026-08-20')}
+        ${field(`news.${i}.title`,'标题',n.title)}
+        ${field(`news.${i}.summary`,'摘要',n.summary,true)}
+        <button class="add" data-del="news.${i}" style="color:var(--err)">删除本条</button>
+      </div>`;
+    });
+    h+=`<button class="add" data-add="news" data-tmpl="news">+ 添加新闻</button></div>`;
+    return h;
+  },
+  about(){
+    const a = content.about||{};
+    return `<div class="card"><h2>关于我们 · 企业简介</h2>
+      ${field('about.title','标题',a.title)}
+      ${field('about.subtitle','副标题',a.subtitle)}
+      ${strList('about.intro',a.intro,'正文段落',true)}
+      </div>
+      <div class="card" style="background:#F0F6FB;border-color:#cfe0ee">
+        <h2 style="color:var(--blue)">说明</h2>
+        <p style="font-size:13px;color:var(--muted)">正文第一段开头会自动加上公司名称「${esc((content.site||{}).COMPANY||'')}——」，所以这里不用重复写公司名。第二、三段照常写。</p>
+      </div>`;
+  },
+  clients(){
+    let h='';
+    (content.clients||[]).forEach((row,i)=>{
+      h+=`<div class="card"><h2>第 ${i+1} 行（${(row||[]).length} 个）</h2>`;
+      (row||[]).forEach((c,j)=>{
+        const fp=`clients.${i}.${j}.file`;
+        h+=`<div class="item">
+          <input data-p="clients.${i}.${j}.name" value="${esc(c.name)}" placeholder="品牌名称">
+          <input data-p="${fp}" value="${esc(c.file)}" placeholder="LOGO 文件名">
+          <button class="up" data-up="${fp}" data-slug="${esc(c.name||'')}" data-client="1">上传</button>
+          <button class="del" data-del="clients.${i}.${j}" title="删除">×</button></div>`;
+      });
+      h+=`<button class="add" data-add="clients.${i}" data-tmpl="client">+ 添加一个</button></div>`;
+    });
+    return h||'<div class="empty">暂无客户LOGO</div>';
+  },
+  assets(){
+    const A=[
+      ['logo-hero.png','首页大 LOGO','首屏右侧展示，建议透明底 PNG，宽 ≥ 800px'],
+      ['logo-header.png','导航栏 LOGO','顶部导航左侧，深色文字版'],
+      ['logo-footer.png','页脚 LOGO','深色页脚上使用，浅色版'],
+      ['wechat-qrcode-white.png','页脚微信二维码','必须是白码 + 透明底，否则深色页脚上看不见'],
+    ];
+    let h=`<div class="card"><h2>站点图片（LOGO / 二维码）</h2>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:8px">文件名固定，上传会直接覆盖同名文件。传完刷新网站页面即可看到，无需点保存。</p>`;
+    A.forEach(([f,t,d])=>{
+      const isQr = f.indexOf('qrcode')>=0;
+      h+=`<div class="asset">
+        <div class="thumb"><img src="/site/assets/images/${f}?t=${Date.now()}" alt=""
+          style="${isQr?'background:#16222F;padding:6px':''}"
+          onerror="this.outerHTML='<span class=\\'ph\\'>图片缺失</span>'"></div>
+        <div class="info"><b>${t}</b><span>${f} · ${d}</span></div>
+        <button class="up" data-up="asset.${f}" data-slug="" data-client="0">上传替换</button>
+      </div>`;
+    });
+    return h+`</div>`;
+  }
+};
+
+/* ---------- 渲染 ---------- */
+function renderNav(){
+  document.getElementById('nav').innerHTML =
+    SECTIONS.map(([k,t])=>`<a data-k="${k}" class="${k===cur?'on':''}">${t}</a>`).join('');
+}
+function render(){
+  document.getElementById('title').textContent =
+    (SECTIONS.find(s=>s[0]===cur)||[])[1]||'';
+  document.getElementById('form').innerHTML = (R[cur]||(()=>'<div class="empty">暂无内容</div>'))();
+  renderNav();
+}
+
+/* ---------- 事件 ---------- */
+document.getElementById('nav').addEventListener('click',e=>{
+  const a=e.target.closest('a[data-k]'); if(!a) return;
+  cur=a.dataset.k; render();
+});
+/* 输入回写 */
+document.getElementById('form').addEventListener('input',e=>{
+  const p=e.target.dataset.p; if(!p) return;
+  setByPath(content,p,e.target.value);
+});
+/* 增 / 删 */
+document.getElementById('form').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  // 上传图片
+  if(b.dataset.up){
+    const path=b.dataset.up;
+    const isAsset = path.indexOf('asset.')===0;
+    const current = isAsset ? path.slice(6) : (getByPath(content,path)||'');
+    const inp=document.createElement('input');
+    inp.type='file'; inp.accept='image/png,image/jpeg,image/webp,image/gif';
+    inp.onchange=async()=>{
+      const f=inp.files[0]; if(!f) return;
+      b.disabled=true; const oldTxt=b.textContent; b.textContent='上传中…';
+      setMsg('正在上传图片…');
+      try{
+        const b64=await toB64(f);
+        const r=await fetch('/api/upload',{method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({filename:f.name,data:b64,path,current,
+            slug:b.dataset.slug||''})
+        }).then(r=>r.json());
+        if(r.ok){
+          if(!isAsset) setByPath(content,path,r.filename);
+          render();
+          setMsg(r.msg+'。'+(isAsset?'刷新网站页面即可看到':'请点右下角「保存并重新生成」'),'ok');
+        }else{ setMsg('上传失败：'+r.msg,'err'); }
+      }catch(err){ setMsg('上传失败：'+err,'err'); }
+      finally{ b.disabled=false; b.textContent=oldTxt; }
+    };
+    inp.click();
+    return;
+  }
+  // 删除
+  if(b.dataset.del){
+    const p=b.dataset.del, i=+p.split('.').pop(), parent=p.slice(0,p.lastIndexOf('.'));
+    const arr=getByPath(content,parent);
+    if(Array.isArray(arr)){ arr.splice(i,1); render(); }
+    return;
+  }
+  // 添加
+  if(b.dataset.add){
+    const p=b.dataset.add, t=b.dataset.tmpl;
+    const arr=getByPath(content,p); if(!Array.isArray(arr)) return;
+    if(t==='str') arr.push('');
+    else if(t==='obj') arr.push({[b.dataset.k1]:'',[b.dataset.k2]:''});
+    else if(t==='prod') arr.push({name:'新品名',slug:'new-'+(arr.length+1),image:'ph-electric-roller-1.svg'});
+    else if(t==='case') arr.push({title:'新案例标题',industry:'所属行业',desc:'方案描述…'});
+    else if(t==='news') arr.push({date:new Date().toISOString().slice(0,10),title:'新动态标题',summary:'摘要…'});
+    else if(t==='client') arr.push({name:'新品牌',file:''});
+    render();
+    return;
+  }
+});
+/* 保存 */
+const statusEl=document.getElementById('status'), saveBtn=document.getElementById('saveBtn');
+function setMsg(t,cls){ statusEl.textContent=t; statusEl.className='msg'+(cls?' '+cls:''); }
+saveBtn.addEventListener('click',async()=>{
+  saveBtn.disabled=true; setMsg('正在保存并重新生成全站页面，请稍候…');
+  try{
+    const r=await fetch('/api/save',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(content)}).then(r=>r.json());
+    if(r.ok){ setMsg('已保存并重新生成，刷新网站页面即可看到新内容','ok'); }
+    else { setMsg('保存失败：'+r.msg,'err'); }
+  }catch(err){ setMsg('请求失败：'+err,'err'); }
+  finally{ saveBtn.disabled=false; setTimeout(()=>{if(statusEl.className.indexOf('ok')>=0)setMsg('就绪');},6000); }
+});
+document.getElementById('previewBtn').addEventListener('click',()=>{
+  window.open('../site/index.html','_blank');
+});
+
+/* ---------- 启动 ---------- */
+fetch('/api/content').then(r=>r.json()).then(d=>{
+  content=d; render(); setMsg('就绪');
+}).catch(e=>{
+  document.getElementById('form').innerHTML='<div class="empty">加载失败：'+e+'</div>';
+});
+</script>
+</body>
+</html>

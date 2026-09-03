@@ -1,0 +1,181 @@
+/* ============================================================
+   拓达昇 TODOSUN — Design Tokens (CSS Variables)
+   版本: v1.0 (Phase 1 方向冻结) | 日期: 2026-08-28
+   来源契约: docs/UIUX.md §3 §11
+   架构: A1-identity / A2-structure / B-slot / C-extension
+   ============================================================ */
+
+:root {
+  /* ---------- A1-identity: 中性色阶 ---------- */
+  --neutral-0: #FFFFFF;
+  --neutral-50: #FAFAFA;
+  --neutral-100: #F7F7F7;
+  --neutral-200: #EDEEF0;
+  --neutral-300: #E1E4E8;
+  --neutral-400: #C6CBD2;
+  --neutral-500: #98A1AB;
+  --neutral-600: #5F6B7A;
+  --neutral-700: #3A4552;
+  --neutral-800: #242E3B;
+  --neutral-900: #14202E;
+
+  /* ---------- A1-identity: 品牌蓝色阶 ---------- */
+  --blue-50: #EEF4FA;
+  --blue-100: #D9E7F3;
+  --blue-200: #B4D0E7;
+  --blue-300: #82B0D3;
+  --blue-400: #4F8BB8;
+  --blue-500: #2A6DA3;
+  --blue-600: #0B4F8C;
+  --blue-700: #0A4274;
+  --blue-800: #09375F;
+  --blue-900: #082C4A;
+
+  /* ---------- A1-identity: 强调橙色阶 ---------- */
+  --orange-50: #FDF3E7;
+  --orange-100: #FAE3C8;
+  --orange-200: #F4C88E;
+  --orange-300: #EFB05C;
+  --orange-400: #E8922A;
+  --orange-600: #B36A10;
+  --orange-700: #A85E0D;
+
+  /* ---------- A1-identity: 语义色（表面/文本/主色） ---------- */
+  --bg: var(--neutral-100);
+  --surface: var(--neutral-0);
+  --fg: var(--neutral-900);
+  --muted: var(--neutral-600);
+  --accent: var(--blue-600);
+  --border: var(--neutral-300);
+
+  --font-display: "Inter", "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Inter", "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  /* ---------- A2: 语义色 ---------- */
+  --primary-hover: var(--blue-700);
+  --primary-active: var(--blue-800);
+  --accent-on: #FFFFFF;
+  --success: #1E7F4F;
+  --warn: #B45309;
+  --danger: #C13333;
+  --info: var(--blue-600);
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* ---------- A2: 字号阶梯（9级） ---------- */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 2rem;      /* 32px */
+  --text-4xl: 2.5rem;    /* 40px */
+  --text-5xl: 3rem;      /* 48px */
+
+  /* ---------- A2: 行高 ---------- */
+  --leading-body: 1.7;
+  --leading-heading: 1.2;
+  --leading-tight: 1.1;
+
+  /* ---------- A2: 字距 ---------- */
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.01em;
+  --tracking-caps: 0.08em;
+
+  /* ---------- A2: 间距（4px 网格） ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-30: 120px;
+
+  /* ---------- A2: 圆角 ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* ---------- A2: 阴影（仅悬浮/弹层，静态零阴影） ---------- */
+  --shadow-sm: 0 1px 3px rgba(20, 32, 46, 0.06);
+  --shadow-md: 0 4px 12px rgba(20, 32, 46, 0.08);
+  --shadow-lg: 0 12px 28px rgba(20, 32, 46, 0.12);
+
+  /* ---------- A2: 动效 ---------- */
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --motion-slow: 300ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---------- B-slot: 语义别名 ---------- */
+  --fg-2: var(--neutral-800);
+  --surface-warm: var(--neutral-200);
+  --meta: var(--neutral-500);
+  --border-soft: var(--neutral-200);
+  --link: var(--blue-500);
+  --focus-ring: 0 0 0 3px rgba(11, 79, 140, 0.35);
+
+  /* ---------- B-slot: 按钮 ---------- */
+  --btn-primary-bg: var(--blue-600);
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: var(--blue-700);
+  --btn-primary-active: var(--blue-800);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: var(--blue-600);
+  --btn-secondary-border: var(--blue-600);
+  --btn-ghost-text: var(--fg);
+  --btn-ghost-hover-bg: var(--blue-50);
+  --btn-height: 44px;
+  --btn-height-touch: 48px;
+
+  /* ---------- B-slot: 输入框 ---------- */
+  --input-bg: #FFFFFF;
+  --input-border: var(--neutral-300);
+  --input-focus-border: var(--blue-600);
+  --input-error-border: var(--danger);
+  --input-placeholder: var(--neutral-500);
+  --input-disabled-bg: var(--neutral-100);
+
+  /* ---------- C-extension: 项目专属 ---------- */
+  --accent-orange: var(--orange-400);
+  --accent-orange-text: var(--orange-700);
+  --accent-orange-on: var(--neutral-900);   /* 橙底上的文字必须用深墨 */
+  --footer-bg: var(--blue-900);
+  --canvas-alt: var(--neutral-50);
+  --stat-bar: var(--blue-600);              /* 数据条主色 */
+  --stat-bar-highlight: var(--orange-400);  /* 数据条高亮项（每屏≤1） */
+
+  /* ---------- C-extension: 布局 ---------- */
+  --container-max: 1200px;
+  --container-reading: 680px;
+  --gutter-desktop: 24px;
+  --gutter-tablet: 16px;
+  --gutter-phone: 12px;
+  --section-y-desktop: 80px;
+  --section-y-tablet: 48px;
+  --section-y-phone: 32px;
+  --nav-height: 72px;
+}
+
+/* ---------- CMS 后台覆盖（Product 寄存器：密度↑、橙色清零） ---------- */
+:root[data-scope="cms"] {
+  --text-base: 0.875rem;   /* CMS 正文 14px */
+  --accent-orange: var(--blue-600);  /* CMS 内橙色不出现，防止与警告混淆 */
+  --accent-orange-text: var(--blue-600);
+  --stat-bar-highlight: var(--blue-600);
+}
+
+/* ---------- 动效退化 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+  }
+}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# 后台管理页不索引（Sveltia CMS 接入后生效）
+Disallow: /admin/
+
+Sitemap: https://www.tdsdoor.com/sitemap.xml
