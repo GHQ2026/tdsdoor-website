@@ -1,16 +1,18 @@
 # Sveltia CMS 配置（拓达昇官网内容后台）
 # 工作流程：浏览器登录 → 编辑下方字段 → 保存 → 写入 GitHub 仓库 content/content.json
 #           → EdgeOne Pages 检测到推送 → 自动运行 python src/build.py → 全站重新上线
-# 注意：未配置 GitHub OAuth 前，访问 /admin/ 会提示登录失败，属正常（见部署文档）。
+# 登录：访问 /admin/ → 点「Sign in with access token」→ 粘贴 GitHub 个人访问令牌（PAT）
+#       令牌只需生成一次，浏览器会记住（详见《网站内容编辑手册》）。
 
 backend:
   name: github
   repo: GHQ2026/tdsdoor-website
   branch: main
-  # 鉴权代理地址：用户部署好 Cloudflare Worker 后，把下方域名替换成实际 Worker 域名
-  base_url: https://sveltia-auth-tdsdoor.workers.dev
-  auth_endpoint: authorize
-  scope: repo
+  # 登录方式：仅使用「个人访问令牌(PAT)」。
+  # 只需你本人在 GitHub 生成一个令牌粘贴一次即可，
+  # 不需要注册 Cloudflare、不需要 OAuth App、不需要额外服务器。
+  auth_methods: [token]
+  # 注意：这里刻意【不配置 base_url】——一旦配置就会走 OAuth 流程，需要额外的鉴权服务器。
 
 # 图片上传目录（相对于仓库根）；发布后通过 /assets/images/xxx.jpg 访问
 media_folder: "site/assets/images"
