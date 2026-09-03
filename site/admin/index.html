@@ -4,9 +4,326 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>拓达昇内容后台</title>
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .boot { display:flex; align-items:center; justify-content:center; height:100vh; color:#5a6b82; font-size:15px; }
+  </style>
 </head>
 <body>
+  <div class="boot" id="boot">后台加载中，请稍候…</div>
+
+  <!-- CMS 配置直接内联在页面里：避免托管平台的 WAF 误拦 .yml 配置文件 -->
+  <script type="application/json" id="sveltia-cms-config">
+{
+  "backend": {
+    "name": "github",
+    "repo": "GHQ2026/tdsdoor-website",
+    "branch": "main",
+    "auth_methods": [
+      "token"
+    ]
+  },
+  "media_folder": "site/assets/images",
+  "public_folder": "/assets/images",
+  "collections": [
+    {
+      "name": "content",
+      "label": "站点内容",
+      "files": [
+        {
+          "name": "site",
+          "label": "全站内容 (content.json)",
+          "file": "content/content.json",
+          "fields": [
+            {
+              "name": "site",
+              "label": "站点基础信息",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "COMPANY",
+                  "label": "公司全称",
+                  "widget": "string"
+                },
+                {
+                  "name": "SLOGAN",
+                  "label": "品牌标语",
+                  "widget": "string"
+                },
+                {
+                  "name": "PHONE",
+                  "label": "电话",
+                  "widget": "string"
+                },
+                {
+                  "name": "EMAIL",
+                  "label": "邮箱",
+                  "widget": "string"
+                },
+                {
+                  "name": "ADDR",
+                  "label": "地址",
+                  "widget": "string"
+                },
+                {
+                  "name": "HERO_TITLE",
+                  "label": "首页主标题",
+                  "widget": "string"
+                },
+                {
+                  "name": "HERO_SUB",
+                  "label": "首页副标题",
+                  "widget": "text"
+                },
+                {
+                  "name": "HERO_MOTTO",
+                  "label": "首页口号",
+                  "widget": "string"
+                }
+              ]
+            },
+            {
+              "name": "news",
+              "label": "新闻动态",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "name": "date",
+                  "label": "发布日期",
+                  "widget": "datetime",
+                  "date_format": "YYYY-MM-DD",
+                  "time_format": false
+                },
+                {
+                  "name": "title",
+                  "label": "标题",
+                  "widget": "string"
+                },
+                {
+                  "name": "summary",
+                  "label": "摘要",
+                  "widget": "text"
+                }
+              ]
+            },
+            {
+              "name": "cases",
+              "label": "案例与方案",
+              "widget": "list",
+              "summary": "{{fields.title}}",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "案例标题",
+                  "widget": "string"
+                },
+                {
+                  "name": "industry",
+                  "label": "所属行业",
+                  "widget": "string"
+                },
+                {
+                  "name": "desc",
+                  "label": "案例描述",
+                  "widget": "text"
+                }
+              ]
+            },
+            {
+              "name": "products",
+              "label": "核心工业门产品（6 大主打）",
+              "widget": "list",
+              "summary": "{{fields.name}}",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "产品名称",
+                  "widget": "string"
+                },
+                {
+                  "name": "slug",
+                  "label": "slug(英文标识)",
+                  "widget": "string"
+                },
+                {
+                  "name": "en",
+                  "label": "英文名",
+                  "widget": "string"
+                },
+                {
+                  "name": "tagline",
+                  "label": "一句话卖点",
+                  "widget": "string"
+                },
+                {
+                  "name": "image",
+                  "label": "封面图",
+                  "widget": "image"
+                },
+                {
+                  "name": "desc",
+                  "label": "产品简介(段落)",
+                  "widget": "list",
+                  "field": {
+                    "name": "p",
+                    "label": "段落",
+                    "widget": "text"
+                  }
+                },
+                {
+                  "name": "features",
+                  "label": "核心特点",
+                  "widget": "list",
+                  "summary": "{{fields.title}}",
+                  "field": {
+                    "widget": "object",
+                    "fields": [
+                      {
+                        "name": "num",
+                        "label": "序号",
+                        "widget": "string"
+                      },
+                      {
+                        "name": "title",
+                        "label": "标题",
+                        "widget": "string"
+                      },
+                      {
+                        "name": "text",
+                        "label": "说明",
+                        "widget": "text"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "specs",
+                  "label": "技术参数",
+                  "widget": "list",
+                  "summary": "{{fields.label}}",
+                  "field": {
+                    "widget": "object",
+                    "fields": [
+                      {
+                        "name": "label",
+                        "label": "参数项",
+                        "widget": "string"
+                      },
+                      {
+                        "name": "value",
+                        "label": "规格说明",
+                        "widget": "string"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "apps",
+                  "label": "应用行业",
+                  "widget": "list",
+                  "field": {
+                    "name": "app",
+                    "label": "行业",
+                    "widget": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "categories",
+              "label": "产品体系全景（6 大类）",
+              "widget": "list",
+              "summary": "{{fields.name}}",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "大类名称",
+                  "widget": "string"
+                },
+                {
+                  "name": "slug",
+                  "label": "slug",
+                  "widget": "string"
+                },
+                {
+                  "name": "products",
+                  "label": "子类目",
+                  "widget": "list",
+                  "summary": "{{fields.name}}",
+                  "field": {
+                    "widget": "object",
+                    "fields": [
+                      {
+                        "name": "name",
+                        "label": "名称",
+                        "widget": "string"
+                      },
+                      {
+                        "name": "slug",
+                        "label": "slug",
+                        "widget": "string"
+                      },
+                      {
+                        "name": "image",
+                        "label": "图片",
+                        "widget": "image"
+                      },
+                      {
+                        "name": "desc",
+                        "label": "描述(可选)",
+                        "widget": "text"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "about",
+              "label": "关于我们页",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "标题",
+                  "widget": "string"
+                },
+                {
+                  "name": "subtitle",
+                  "label": "副标题",
+                  "widget": "string"
+                },
+                {
+                  "name": "intro",
+                  "label": "企业简介(段落)",
+                  "widget": "list",
+                  "field": {
+                    "name": "p",
+                    "label": "段落",
+                    "widget": "text"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
   <!-- Sveltia CMS 自托管 bundle（锁版本，避免自动升级破坏） -->
   <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.129.3/dist/sveltia-cms.min.js"></script>
+  <script>
+    // 若 CMS 脚本未加载成功（网络被拦截），给出可读提示而不是白屏
+    setTimeout(function () {
+      var boot = document.getElementById('boot');
+      if (boot && !document.querySelector('sveltia-cms')) {
+        boot.innerHTML = '后台脚本未加载成功，通常是网络拦截了 CDN。<br>请更换网络后重试，或联系技术人员。';
+      }
+    }, 8000);
+  </script>
 </body>
 </html>
