@@ -2,7 +2,7 @@
 
 静态站点源码仓库。零框架、零依赖构建（Python 标准库），内容层与展示层分离。
 
-正式域名：**https://www.tdsdoor.com**
+正式域名：**https://www.todosun.com**
 
 ---
 
@@ -38,12 +38,12 @@ python src/tools/gate_check.py   # 跑质量门禁
 
 ### 方式一：Sveltia 网页后台（推荐，任何设备）
 
-访问 `https://www.tdsdoor.com/admin/`，用 GitHub 账号登录，即可在线改新闻 / 产品 / 案例 / 图片。
+访问 `https://www.todosun.com/admin/`，用 GitHub 账号登录，即可在线改新闻 / 产品 / 案例 / 图片。
 保存后自动提交到本仓库 → 触发自动构建 → 全站更新。
 
 前置配置（一次性）：
 1. GitHub 注册 OAuth App（Settings → Developer settings → OAuth Apps → New OAuth App）
-   - Homepage URL：`https://www.tdsdoor.com`
+   - Homepage URL：`https://www.todosun.com`
    - Authorization callback URL：`https://<你的Worker域名>/callback`
 2. 部署 `cms/sveltia-auth-worker.js` 到 Cloudflare Worker，配置环境变量：
    - `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` / `ADMIN_URL`
@@ -73,7 +73,7 @@ Settings → Pages → Source 选 **GitHub Actions**。推送 main 分支即自�
 
 ## 上线 checklist
 
-- [ ] 域名 `tdsdoor.com` DNS 解析指向托管平台
+- [ ] 域名 `todosun.com` DNS 解析指向托管平台
 - [ ] ICP 备案完成，回填页脚备案号（当前为 `皖ICP备XXXXXXXX号` 占位）
 - [ ] Web3Forms `access_key` 替换（当前占位，表单不会真发邮件）
 - [ ] 百度 / 搜狗 / 360 / 神马站长平台提交站点 + sitemap.xml

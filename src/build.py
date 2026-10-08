@@ -17,7 +17,7 @@ BASE.mkdir(parents=True, exist_ok=True)
 
 # 站点正式域名（上线后全局替换为备案域名，例如 https://www.tuodasheng.com）
 # robots / sitemap / canonical / Open Graph / JSON-LD 全部引用此常量，改一处即全站生效
-SITE_URL = "https://www.tdsdoor.com"
+SITE_URL = "https://www.todosun.com"
 
 
 def jsonld_org():
